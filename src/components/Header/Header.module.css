@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px; 
+  background-color: var(--color1);
+}
+
+.link {
+  text-decoration: none;
+  color: var(--color4);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.link:hover {
+  color: var(--color4);
+}
