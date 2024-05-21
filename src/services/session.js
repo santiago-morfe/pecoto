@@ -1,12 +1,12 @@
 import { API_URL } from './config.js'
 
-export function iniciarSession (email, password) {
+export function iniciarSession (username, password) {
   return fetch(`${API_URL}/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify({ username, password })
   })
     .then(response => {
       if (response.ok) {
