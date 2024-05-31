@@ -48,6 +48,7 @@ export const isAuthenticated = () => {
 export const logout = () => {
   localStorage.removeItem('accessToken')
   localStorage.removeItem('refreshToken')
+  window.location.reload()
 }
 
 export const refreshToken = async () => {
@@ -55,34 +56,5 @@ export const refreshToken = async () => {
 
 const isTokenExpired = (token) => {
   const { exp } = jwtDecode(token)
-  return Date.now() >= exp * 1000
-}
-
-export const test = async () => {
-  const myHeaders = new Headers()
-  myHeaders.append('Content-Type', 'application/json')
-
-  const raw = JSON.stringify({
-    username: 'admin',
-    password: 'adminadmin',
-    userprofile: {
-      fullname: 'santiago',
-      address: 'pineda'
-    }
-  })
-
-  const requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
-  }
-
-  try {
-    const response = await fetch('https://pecoto-ut.onrender.com/api/v1/users/', requestOptions)
-    const result = await response.text()
-    console.log(result)
-  } catch (error) {
-    console.error(error)
-  }
+  return (Date.now() >= exp * 1000)
 }

@@ -14,7 +14,7 @@ export function Login () {
     try {
       console.log(loginData)
       await login(loginData)
-      // window.location.reload()
+      window.location.reload()
     } catch (error) {
       setError(error.message)
     } finally {

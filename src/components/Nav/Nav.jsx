@@ -1,5 +1,6 @@
 import styles from './Nav.module.css'
 import { Link, useLocation } from 'react-router-dom'
+import { logout } from '../../services/session'
 
 export function Nav () {
   // saber en que ruta estoy
@@ -27,6 +28,12 @@ export function Nav () {
         <li className={styles.item + ' ' + getLocationClass('/Material')}>
           <Link to='/Material' className={styles.link}>material</Link>
         </li>
+        <button
+          onClick={logout}
+          className={styles.button}
+        >
+          serrar sesion
+        </button>
       </ul>
     </nav>
   )
