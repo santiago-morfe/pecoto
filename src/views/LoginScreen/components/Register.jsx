@@ -63,11 +63,10 @@ export function Register () {
         required
         onChange={e => setRegisterData({ ...registerData, confirmPassword: e.target.value })}
       />
-      <button
+      <input
         type="submit"
-      >
-        {loading ? 'Cargando...' : 'Registrarse'}
-      </button>
+        value={loading ? 'Cargando...' : 'Registrarse'}
+      />
     </form>
   )
 }

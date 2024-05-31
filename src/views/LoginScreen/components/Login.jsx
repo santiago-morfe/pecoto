@@ -12,6 +12,7 @@ export function Login () {
     setError('')
 
     try {
+      console.log(loginData)
       await login(loginData)
       // window.location.reload()
     } catch (error) {
@@ -43,11 +44,8 @@ export function Login () {
         autoComplete='current-password'
         onChange={e => setLoginData({ ...loginData, password: e.target.value })}
       />
-      <button
-        type="submit"
-      >
-        {loading ? 'Cargando...' : 'Iniciar Sesión'}
-      </button>
+      <a href="/">Olvidé mi contraseña</a>
+      <input type="submit" value={loading ? 'Cargando...' : 'Entrar'} />
     </form>
   )
 }

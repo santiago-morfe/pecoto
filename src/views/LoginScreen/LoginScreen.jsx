@@ -9,12 +9,11 @@ export default function LoginRegisterScreen () {
   return (
     <div className={styles.container} >
       <div className={styles.main} >
-
         <div className={(loginOrRegister === 'login' ? styles.login : styles.register)}>
           {loginOrRegister === 'login' ? <Login /> : <Register />}
         </div>
-        <div className={styles.info}>
-          <div>
+        <div className={styles.info_container}>
+          <div className={styles.info1}>
 
             <h2>
               ¿Ya tienes cuenta?
@@ -28,7 +27,7 @@ export default function LoginRegisterScreen () {
               Iniciar Sesión
             </button>
           </div>
-          <div>
+          <div className={styles.info2}>
             <h2>
               ¿No tienes cuenta?
             </h2>
