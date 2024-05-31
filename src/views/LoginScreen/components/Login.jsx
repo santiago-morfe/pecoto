@@ -12,9 +12,8 @@ export function Login () {
     setError('')
 
     try {
-      console.log(loginData)
       await login(loginData)
-      window.location.reload()
+      window.location.href = '/'
     } catch (error) {
       setError(error.message)
     } finally {

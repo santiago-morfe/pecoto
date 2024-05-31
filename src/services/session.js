@@ -1,41 +1,40 @@
 import { API_URL } from './config.js'
 import { jwtDecode } from 'jwt-decode'
 
-export const login = async ({ username, password }) => {
-  return fetch(`${API_URL}/login/`, {
+export async function login ({ username, password }) {
+  const response = await fetch(`${API_URL}/login/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ username, password })
   })
-    .then(response => response.json())
-    .then(({ access, refresh }) => {
-      localStorage.setItem('accessToken', access)
-      localStorage.setItem('refreshToken', refresh)
-    })
-    .catch(error => {
-      throw new Error('Credenciales incorrectas', error)
-    })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(`Error: ${errorData.message}`)
+  }
+
+  const { access, refresh } = await response.json()
+  localStorage.setItem('accessToken', access)
+  localStorage.setItem('refreshToken', refresh)
 }
 
-export const register = async ({ username, password, userprofile }) => {
-  return fetch(`${API_URL}/api/v1/users/`, {
+export async function register ({ username, password, userprofile }) {
+  const response = await fetch(`${API_URL}/api/v1/users/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ username, password, userprofile })
   })
-    .then(response => response.json())
-    .then((response) => {
-      if (response.status === '201') {
-        return login({ username, password })
-      }
-    })
-    .catch(error => {
-      throw new Error('Error al registrar', error)
-    })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(`Error: ${errorData.message}`)
+  }
+
+  return await login({ username, password })
 }
 
 export const isAuthenticated = () => {

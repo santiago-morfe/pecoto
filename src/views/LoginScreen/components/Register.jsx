@@ -16,7 +16,7 @@ export function Register () {
     }
     try {
       await register(registerData)
-      window.location.reload()
+      window.location.href = '/'
     } catch (error) {
       setError(error.message)
     } finally {
