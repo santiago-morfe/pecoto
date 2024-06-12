@@ -1,9 +1,9 @@
 import styles from './Nav.module.css'
 import { Link, useLocation } from 'react-router-dom'
-import { logout } from '../../services/session'
+import { IconHome, IconMaterial, IconManual, IconConfig } from '../icons/Icons'
+import { ItemNavUser, ItemNavUser2 } from '../itemsProfile/ItemNavUser'
 
-export function Nav () {
-  // saber en que ruta estoy
+export function DisplayedNav () {
   const location = useLocation()
 
   function getLocationClass (path) {
@@ -11,29 +11,77 @@ export function Nav () {
   }
 
   return (
-    <nav className={ styles.nav}>
+    <nav className={styles.displayedNav}>
       <ul className={styles.list}>
-        <li className={styles.item + ' ' + getLocationClass('/')}>
-          <Link to='/' className={styles.link}>inicio</Link>
+        <li className={getLocationClass('/perfil') + ' ' + styles.itemNavHead}>
+          <Link to='/perfil' className={styles.link}>
+            <ItemNavUser />
+          </Link>
         </li>
-        <li className={styles.item + ' ' + getLocationClass('/perfil') }>
-          <Link to='/perfil' className={styles.link}>perfil</Link>
+        <li className={getLocationClass('/') + ' ' + styles.itemNav}>
+          <Link to='/' className={styles.link}>
+          <IconHome variant={1} />
+            <p>Inicio</p>
+          </Link>
         </li>
-        <li className={styles.item + ' ' + getLocationClass('/info')}>
-          <Link to='/info' className={styles.link}>informacion</Link>
+        <li className={getLocationClass('/Material') + ' ' + styles.itemNav}>
+          <Link to='/Material' className={styles.link}>
+          <IconMaterial variant={1} />
+            <p>Material De Estudio</p>
+          </Link>
         </li>
-        <li className={styles.item + ' ' + getLocationClass('/manual')}>
-          <Link to='/manual' className={styles.link}>manual</Link>
+        <li className={getLocationClass('/manual') + ' ' + styles.itemNav}>
+          <Link to='/manual' className={styles.link}>
+          <IconManual variant={1} />
+            <p>Manual Me Uso</p>
+          </Link>
         </li>
-        <li className={styles.item + ' ' + getLocationClass('/Material')}>
-          <Link to='/Material' className={styles.link}>material</Link>
+        <li className={getLocationClass('/manual') + ' ' + styles.itemNav}>
+          <Link to='/configuracion' className={styles.link}>
+          <IconConfig variant={1} />
+            <p>Configuracion</p>
+          </Link>
         </li>
-        <button
-          onClick={logout}
-          className={styles.button}
-        >
-          serrar sesion
-        </button>
+      </ul>
+    </nav>
+  )
+}
+
+export function FoldedNav () {
+  const location = useLocation()
+
+  function getLocationClass (path) {
+    return location.pathname === path ? styles.active : ''
+  }
+
+  return (
+    <nav className={styles.foldedNav}>
+      <ul className={styles.list}>
+        <li className={getLocationClass('/perfil') + ' ' + styles.itemNavHead}>
+          <Link to='/perfil' className={styles.link}>
+            <ItemNavUser2 />
+          </Link>
+        </li>
+        <li className={getLocationClass('/') + ' ' + styles.itemNav}>
+          <Link to='/' className={styles.link}>
+            <IconHome variant={2} />
+          </Link>
+        </li>
+        <li className={getLocationClass('/Material') + ' ' + styles.itemNav}>
+          <Link to='/Material' className={styles.link}>
+            <IconMaterial variant={2} />
+          </Link>
+        </li>
+        <li className={getLocationClass('/manual') + ' ' + styles.itemNav}>
+          <Link to='/manual' className={styles.link}>
+            <IconManual variant={2} />
+          </Link>
+        </li>
+        <li className={getLocationClass('/configuracion') + ' ' + styles.itemNav}>
+          <Link to='/configuracion' className={styles.link}>
+            <IconConfig variant={2} />
+          </Link>
+        </li>
       </ul>
     </nav>
   )

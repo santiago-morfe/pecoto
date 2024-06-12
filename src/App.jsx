@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { ProtectedRoute } from './components/ProtectedRoute'
+import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute'
 import { lazy, Suspense } from 'react'
 import { Loading } from './components/Loading/Loading'
 import { isAuthenticated } from './services/session'
 import './App.css'
 const LoginScreen = lazy(() => import('./views/LoginScreen/LoginScreen'))
-const DashboardScreen = lazy(() => import('./views/DashboardScreen/DashboardScreen'))
+const HomeDashboard = lazy(() => import('./views/HomeScreen/HomeScreen'))
 const NotFoundScreen = lazy(() => import('./views/NotFoundScreen/NotFundScreen'))
 
 function App () {
@@ -19,7 +19,7 @@ function App () {
           </Route>
 
           <Route element={<ProtectedRoute redirect='/login' isAllowed={isAuthenticated()} />} >
-            <Route path='/' element={<DashboardScreen />} />
+            <Route path='/' element={<HomeDashboard />} />
             <Route path='*' element={<NotFoundScreen />} />
           </Route>
 
