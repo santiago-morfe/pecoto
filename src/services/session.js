@@ -57,19 +57,3 @@ const isTokenExpired = (token) => {
   const { exp } = jwtDecode(token)
   return (Date.now() >= exp * 1000)
 }
-
-export const getModulos = async (id) => {
-  const  response = await fetch(`${API_URL}/module/${id}/`
-  ,{method:'GET',
-    headers: {
-      'Content-Type':'aplication/json'
-    }
-  } 
-)
-if (!response.ok)
-  {
-    const errorData = await response.json()
-    throw new Error (`Error: ${errorData.message}`)
-  }
-  return await response.json() 
-}
