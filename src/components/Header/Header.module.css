@@ -39,9 +39,9 @@
 }
 
 .menuOpen {
-  width: 272px;
+  min-width: 272px;
 }
 
 .menuClosed {
-  width: 57px;
+  min-width: 57px;
 }
