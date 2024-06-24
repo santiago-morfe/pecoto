@@ -5,6 +5,7 @@ import styles from './ModulList.module.css'
 
 export function ModulList () {
   const [moduls, setModuls] = useState([])
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     getModuls()
   }, [])
@@ -15,14 +16,25 @@ export function ModulList () {
       setModuls(response.results)
     } catch (error) {
       console.error(error)
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
-    <ul className={styles.list}>
-      {moduls.map(modul => (
-        <ItemModulList key={modul.id} modul={modul} />
-      ))}
-    </ul>
+    <>
+      {
+        loading && <p>Loading...</p>
+      }
+      {
+        !loading && (
+          <ul className={styles.list}>
+            {moduls.map(modul => (
+              <ItemModulList key={modul.id} modul={modul} />
+            ))}
+          </ul>
+        )
+      }
+    </>
   )
 }

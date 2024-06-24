@@ -1,0 +1,43 @@
+.itemModulList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  background-color: #f1f1f1;
+  details{
+    width: 100%;
+    summary{
+      background-color: #66c752;
+      padding: 20px;
+      display: flex;
+      border-radius: 20px;
+
+    }
+    summary:hover{
+      background-color: #72eb60;
+    }
+    ul{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      li{
+        padding: 20px;
+        border-bottom: 1px solid #f1f1f1;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f1f1f1;
+        &:last-child{
+          border-bottom: none;
+        }
+      }
+      li:hover{
+        background-color: #ffffff;
+      }
+    }
+  }
+}
